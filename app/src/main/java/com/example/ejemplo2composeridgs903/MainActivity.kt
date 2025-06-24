@@ -28,65 +28,66 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ejemplo2composeridgs903.ui.theme.Ejemplo2Composeridgs903Theme
+import com.example.ejemplo2composeridgs903.ui.theme.SumaDosNumeros
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "inicio"){
-                composable("inicio"){pantallaInicio(navController)}
-                composable("detalle/{nombre}"){ backStackEntry ->
-                    val nombre = backStackEntry.arguments?.getString("nombre") ?: "Invitado"
-                    pantallaDetalle(navController, nombre)
-                }
+//            val navController = rememberNavController()
+//            NavHost(navController = navController, startDestination = "inicio"){
+//                composable("inicio"){pantallaInicio(navController)}
+//                composable("detalle/{nombre}"){ backStackEntry ->
+//                    val nombre = backStackEntry.arguments?.getString("nombre") ?: "Invitado"
+//                    pantallaDetalle(navController, nombre)
+//                }
+            SumaDosNumeros()
             }
 
         }
     }
-    @Composable
-    fun pantallaInicio(navController: NavHostController) {
-        var nombre by remember { mutableStateOf("") }
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-        ) {
-            Text("Pantalla de inicio")
-            Spacer(modifier = Modifier.height(16.dp))
-
-            TextField(
-                value = nombre,
-                onValueChange = { nombre = it },
-                label = { Text("Ingresa tu nombre") },
-
-                modifier = Modifier.fillMaxWidth()
-
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = {
-                val nombre = nombre.ifBlank { "Sergio" }
-                navController.navigate("detalle/$nombre")
-            }) {
-                Text("Ir a detalle con nombre")
-
-            }
-        }
-    }
-    @Composable
-    fun pantallaDetalle(navController : NavHostController, nombre: String) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-        ) {
-            Text("Hola $nombre!")
-            Button(onClick = {
-                navController.navigate("inicio")
-            }) {
-                Text("Volver a inicio")
-                }
-            }
-    }
-}
+//    @Composable
+//    fun pantallaInicio(navController: NavHostController) {
+//        var nombre by remember { mutableStateOf("") }
+//        Column(
+//            modifier = Modifier.fillMaxSize(),
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+//        ) {
+//            Text("Pantalla de inicio")
+//            Spacer(modifier = Modifier.height(16.dp))
+//
+//            TextField(
+//                value = nombre,
+//                onValueChange = { nombre = it },
+//                label = { Text("Ingresa tu nombre") },
+//
+//                modifier = Modifier.fillMaxWidth()
+//
+//            )
+//            Spacer(modifier = Modifier.height(16.dp))
+//            Button(onClick = {
+//                val nombre = nombre.ifBlank { "Sergio" }
+//                navController.navigate("detalle/$nombre")
+//            }) {
+//                Text("Ir a detalle con nombre")
+//
+//            }
+//        }
+//    }
+//    @Composable
+//    fun pantallaDetalle(navController : NavHostController, nombre: String) {
+//        Column(
+//            modifier = Modifier.fillMaxSize(),
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+//        ) {
+//            Text("Hola $nombre!")
+//            Button(onClick = {
+//                navController.navigate("inicio")
+//            }) {
+//                Text("Volver a inicio")
+//                }
+//            }
+//    }
